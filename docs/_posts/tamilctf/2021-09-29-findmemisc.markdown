@@ -29,6 +29,8 @@ En regardant l'image de plus près j'ai remarqué différents mots dispersés pa
 
 En concaténant le mot de taille 8, puis de taille 5 puis 7, etc. : `You_cant_GET!ForEver007700`
 
-Sur l'image se trouve également les chaines `TamilCTF` et `}`
+Sur l'image se trouve également les chaines `TamilCTF{` et `}`
 
-Je concatène le tout : `TamilCTF{You_cant_GET!ForEver007700}` bingo !
+Je concatène le tout : `TamilCTF{You_cant_GET!ForEver007700}` 
+
+bingo !
