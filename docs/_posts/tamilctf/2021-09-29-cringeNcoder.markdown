@@ -13,7 +13,6 @@ Ce challenge de la catégorie Web était le plus simple considérant le nombre d
 
 Au début du challenge, j'ai simplement une page dans laquelle je peux taper du texte pour le transformer en "cringe langage". 
 
-
 ![1](https://user-images.githubusercontent.com/16634117/135307400-a482a4cb-fbb6-4692-b013-42d0aeb7b3a5.png)
 
 Comme à chaque CTF web je vérifie s'il n'existe pas un endpoint `/flag`
