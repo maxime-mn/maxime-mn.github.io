@@ -22,13 +22,16 @@ Le premier doute à lever est de savoir s'il n'existe pas d'autres fichiers cach
 Il y a énormément de donnée présente j'ai donc décidé de tout extraire afin de pouvoir étudier tout ça de plus près. 
 
 `binwalk Babywalk --extract .`
+
 ![2](https://user-images.githubusercontent.com/16634117/135306382-70c55f9c-d91e-4418-9953-49b0aa38964c.png)
 
 En ouvrant les fichiers un par un j'ai rapidement remarqué de la donnée en format base64 et en texte brut.
+
 ![3](https://user-images.githubusercontent.com/16634117/135306463-ef911f72-52d7-4e7c-a7a6-b583c29c2770.png)
 
-j'ai ensuite gardé les fichiers base64 et je les ai remis sous forme de texte 
+j'ai ensuite gardé les fichiers base64 et je les ai remis sous forme de texte
+
 ![4](https://user-images.githubusercontent.com/16634117/135306590-9ac76116-bccd-43db-8be8-e4d3780cbf36.png)
 
 
-Et voila le flag ! Belle mise en jambe pour ce CTF.
+Bingo !
