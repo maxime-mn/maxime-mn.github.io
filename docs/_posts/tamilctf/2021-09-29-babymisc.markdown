@@ -5,7 +5,7 @@ date:   2021-09-29
 categories: tamilctf
 ---
 
-![](babymisc/1.png)
 
 
+![1](https://user-images.githubusercontent.com/16634117/135277010-6023f88d-165d-49af-81de-422e56abc2e9.png)
 
