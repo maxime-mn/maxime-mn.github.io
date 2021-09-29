@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "[WIP] Terrapin"
+title:  "Terrapin"
 date:   2021-09-29
 categories: tamilctf
 ---
@@ -24,7 +24,6 @@ Je n'ai aucune idée de ce que cela peut être, mais on nous dit que le titre du
 ![3](https://user-images.githubusercontent.com/16634117/135321459-702f8201-452c-453a-8ef2-94a8e16bee86.png)
 
 Un matériel avec une tortue pour apprendre à programmer... A partir de là, l'idée est de faire un chemin qui nous donnerait du texte ? Cela colle parfaitement avec les directions et qui plus est les mouvements de montée et descente du stylo. J'ai d'abord cherché un interpréteur sur le site, mais rien de bien intéressant. Je cherche donc un équivalent python et tombe sur une librairie nommée [Turtle](https://docs.python.org/fr/3/library/turtle.html) qui fait exactement ce dont j'ai besoin.
-
 
 Les étapes sont les suivantes :
  1. Définir les actions qui ne sont pas données (elles sont triviales) 
