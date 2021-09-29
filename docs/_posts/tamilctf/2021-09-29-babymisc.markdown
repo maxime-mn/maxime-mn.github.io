@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "Babymisc"
+date:   2021-09-29
+categories: tamilctf
+---
+
+![](babymisc/1.png)
+
+
+
