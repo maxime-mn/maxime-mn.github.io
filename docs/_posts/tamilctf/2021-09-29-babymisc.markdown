@@ -5,6 +5,11 @@ date:   2021-09-29
 categories: tamilctf
 ---
 
+# Introduction
+
+Ce challenge de la catégorie forensic ne valait pas beaucoup de points et pour cause il était très trivial. 
+
+# Résolution
 
 
 ![1](https://user-images.githubusercontent.com/16634117/135277010-6023f88d-165d-49af-81de-422e56abc2e9.png)
