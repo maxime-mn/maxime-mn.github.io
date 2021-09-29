@@ -5,6 +5,50 @@ date:   2021-09-29
 categories: tamilctf
 ---
 
+Ce challenge web comporte une page d'accueil avec ce qui ressemble à une application de discussion. Le descriptif nous informe que le flag est en deux parties et qu'il va falloir les récupérer individuellement.
 
+![1](https://user-images.githubusercontent.com/16634117/135314630-7ecf4754-312b-471a-9d1d-b09cb5e190d6.png)
 
+Je me rends donc naturellement sur la première conversation et tombe sur une conversation déjà engagée dans laquelle je peux encore envoyer des messages :
 
+![2](https://user-images.githubusercontent.com/16634117/135314719-bf605611-bfd0-47fa-bae1-2b51b41665a0.png)
+
+J'envoie donc un message afin de voir le comportement du système :
+
+![3](https://user-images.githubusercontent.com/16634117/135314832-f63dd504-de83-41e4-954a-a811d4f09f99.png)
+
+Le sytème me répond bien, je suppose donc qu'il faut intéragir avec celui ci pour trouver la premère partie du flag.
+
+Le titre est probablement un indice, j'ouvre donc mon coeur au système :
+
+![4](https://user-images.githubusercontent.com/16634117/135315257-b20346ff-fe0f-45ea-b3d5-4b9de278fc31.png)
+
+Cette réponse est très étrange... 
+
+Je relance le même message plusieurs fois et la raison est à chaque fois différente... Je suppose que la donnée est utile et son format semble être de l'hexadécimal. En la transformant en un format lisible, je récupère des caractères comme des `{`, `}`, `_` et d'autres... Mais il n'y a aucun ordre logique dans tout ça.
+
+L'énoncé faisait référence à des couleurs, je vérifie donc la source de ces messages pour y trouver cela :
+
+![5](https://user-images.githubusercontent.com/16634117/135315742-c12d687b-a5b6-4d81-8715-c637d7728ff3.png)
+
+Un numéro pour chaque message ! Qui change a chaque fois et qui ne représente pas le Nième message envoyé. J'en déduis que c'est la place du caractère dans la chaîne à trouver.
+
+Je recompose donc tout ça dans le bon ordre en envoyant plusieurs fois le message `I love you` : 
+
+`54 61 6d 69 6c 43 54 46 7b 30 2e 30 5f 77 30 77 5f 53 68 33 5f`
+
+Puis le repasse en texte : `TamilCTF{0.0_w0w_Sh3_`
+
+J'ai donc la première partie du flag. Il me reste maintenant l'autre conversation qui se présente sous cette forme :
+
+![6](https://user-images.githubusercontent.com/16634117/135316361-ea6b2200-16a1-4443-88cb-b331b2c1a8e9.png)
+
+Habitué à ce genre de challenge, je teste directement de renvoyer le même message. Le bot me répond bizarrement avec une chaine qui semble être fake de plus en prenant en compte le titre de la page... 
+
+En obersant les requêtes et les cookies, j'ai vite remarqué un nouvel arrivant dans ma liste de cookies qui me semblait bien étrange :
+
+![7](https://user-images.githubusercontent.com/16634117/135316629-16d1e465-fcde-434c-8992-746fa73149d0.png)
+
+J'ai donc la seconde partie du flag : `4cC3P73D_uR_luV_<3}`
+
+Je peux concatener les deux pour obtenir : `TamilCTF{0.0_w0w_Sh3_4cC3P73D_uR_luV_<3}`
