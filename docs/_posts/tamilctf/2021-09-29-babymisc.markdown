@@ -11,6 +11,20 @@ Ce challenge de la catégorie forensic ne valait pas beaucoup de points et pour 
 
 # Résolution
 
+Le challenge comporte un fichier pdf, on commence donc par l'ouvrir : 
+
+![5](https://user-images.githubusercontent.com/16634117/135305063-c6681b01-b8b4-42d8-b7bb-f76e6f56552e.png)
+
+Ce qu'il y a écrit dans le fichier est dans format de flag à donner pour les challenges. Evidemment la validation ne fonctionne pas avec ce flag.
+
+Le premier test est de savoir s'il n'existe pas d'autres fichiers cachés dans le pdf, pour cela j'utilise la commande `binwalk`.
+
+![1](https://user-images.githubusercontent.com/16634117/135305495-b4310d9b-c29d-4580-8ec5-ad3a83b50db7.png)
+
+Il y a énormément de donnée présente dans ce fichier ! J'ai donc décidé de tout extraire afin de pouvoir étudier tout ça de plus près. 
+
+`binwalk Babywalk --extract .`
+
 
 ![1](https://user-images.githubusercontent.com/16634117/135277010-6023f88d-165d-49af-81de-422e56abc2e9.png)
 
