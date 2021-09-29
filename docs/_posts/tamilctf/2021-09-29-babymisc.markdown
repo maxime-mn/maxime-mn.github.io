@@ -12,27 +12,23 @@ Ce challenge de la catégorie forensic ne valait pas beaucoup de points et pour 
 # Résolution
 
 Le challenge comporte un fichier pdf, je commence donc par simplement l'ouvrir : 
-
 ![5](https://user-images.githubusercontent.com/16634117/135305063-c6681b01-b8b4-42d8-b7bb-f76e6f56552e.png)
 
-Le texte est dans le format à donner pour la résolution, mais ne fonctionne évidemment pas.
+Le texte est dans le format flag, mais ne valide évidemment pas le challenge.
 
 Le premier doute à lever est de savoir s'il n'existe pas d'autres fichiers cachés dans le pdf, pour cela j'utilise la commande `binwalk`.
-
 ![1](https://user-images.githubusercontent.com/16634117/135305495-b4310d9b-c29d-4580-8ec5-ad3a83b50db7.png)
 
-Il y a énormément de donnée présente dans ce fichier ! J'ai donc décidé de tout extraire afin de pouvoir étudier tout ça de plus près. 
+Il y a énormément de donnée présente j'ai donc décidé de tout extraire afin de pouvoir étudier tout ça de plus près. 
 
 `binwalk Babywalk --extract .`
-
 ![2](https://user-images.githubusercontent.com/16634117/135306382-70c55f9c-d91e-4418-9953-49b0aa38964c.png)
 
-En ouvrant les fichiers un par un j'ai rapidement remarqué de la donnée en format base64 et d'autre donnée en texte brut.
+En ouvrant les fichiers un par un j'ai rapidement remarqué de la donnée en format base64 et en texte brut.
 ![3](https://user-images.githubusercontent.com/16634117/135306463-ef911f72-52d7-4e7c-a7a6-b583c29c2770.png)
 
 j'ai ensuite gardé les fichiers base64 et je les ai remis sous forme de texte 
-
 ![4](https://user-images.githubusercontent.com/16634117/135306590-9ac76116-bccd-43db-8be8-e4d3780cbf36.png)
 
 
-Et voila le flat ! Belle mise en jambe pour ce CTF.
+Et voila le flag ! Belle mise en jambe pour ce CTF.
