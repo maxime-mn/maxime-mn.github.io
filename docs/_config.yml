@@ -18,7 +18,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Maxime Mion | Ctf & hacking stuff
+title: Maxime (wYNZ) Mn | Ctf & hacking stuff
 email: w1nz-cybersec@protonmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   Mon site personnel sur lequel je poste de temps à autre sur des writeups de CTF ou d'autres sujets qui m'interessent !
