@@ -11,6 +11,16 @@ Ce challenge ne comporte qu'un fichier PDF.
 
 # Résolution
 
-En ouvrant le fichier on y trouve un tableau traduisant des 
+En ouvrant le fichier on y trouve une liste traduisant des instructions : 
 
+![1 png](https://user-images.githubusercontent.com/16634117/135321043-8acd9c27-951e-46a2-bd78-5a5f59e8f342.png)
 
+Et plus bas du "Terapin code" :
+
+![2](https://user-images.githubusercontent.com/16634117/135321136-c1ec2b2a-d55c-4276-9ab9-0329cd432a5f.png)
+
+Je n'ai aucune idée de ce que cela peut être, mais on nous dit que le titre du challenge est un indice important (comme souvent en CTF). Une petite recherche google nous permet de tomber sur ce site : 
+
+![3](https://user-images.githubusercontent.com/16634117/135321459-702f8201-452c-453a-8ef2-94a8e16bee86.png)
+
+Un matériel avec une tortue pour apprendre à programmer... A partir de là, l'idée est de faire un chemin qui nous donnerait du texte ? J'ai d'abord cherché un interepréteur sur le site, mais rien de bien intéressant. Je cherche donc un équivalent python et tombe sur une librairie `turtle` qui fait exactement ce dont j'ai besoin.
