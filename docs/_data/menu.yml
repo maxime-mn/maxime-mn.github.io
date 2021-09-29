@@ -4,7 +4,7 @@ entries:
   - title: A propos
     url: about
     entries:
-      - title: Bienvenue sur mon blog. Vous trouverez ici des posts en tout genre sur des CTF ou la cybersécurité en général. 
+      - title: Bienvenue sur mon humble site web. Je poste sur différents sujets autour de la sécurité informatique, notamment sur les CTF. 
 
   - title: Tamil CTF 2021
     post_list:
@@ -12,16 +12,18 @@ entries:
       show_more: true
 
   
-          # - title: Mes posts
-          #post_list:
-          #limit: 5
-          #show_more: false
-          #show_more_text: See archive...
-          #show_more_url: archive.html
-        #- title: another list
-    # entries:
-      #  - title: with subitems
-      #  entries:
-      #    - title: with subsubitems
+  
+  
+# - title: Mes posts
+#post_list:
+#limit: 5
+#show_more: false
+#show_more_text: See archive...
+#show_more_url: archive.html
+#- title: another list
+# entries:
+#  - title: with subitems
+#  entries:
+#    - title: with subsubitems
 #  - title: Flux rss du blog
-    #url: feed.xml
+#url: feed.xml
