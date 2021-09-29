@@ -15,7 +15,7 @@ En ouvrant le fichier on y trouve une liste traduisant des instructions :
 
 ![1 png](https://user-images.githubusercontent.com/16634117/135321043-8acd9c27-951e-46a2-bd78-5a5f59e8f342.png)
 
-Et plus bas du "Terapin code" :
+Et plus bas du "Terrapin code" :
 
 ![2](https://user-images.githubusercontent.com/16634117/135321136-c1ec2b2a-d55c-4276-9ab9-0329cd432a5f.png)
 
@@ -23,4 +23,65 @@ Je n'ai aucune idée de ce que cela peut être, mais on nous dit que le titre du
 
 ![3](https://user-images.githubusercontent.com/16634117/135321459-702f8201-452c-453a-8ef2-94a8e16bee86.png)
 
-Un matériel avec une tortue pour apprendre à programmer... A partir de là, l'idée est de faire un chemin qui nous donnerait du texte ? J'ai d'abord cherché un interepréteur sur le site, mais rien de bien intéressant. Je cherche donc un équivalent python et tombe sur une librairie `turtle` qui fait exactement ce dont j'ai besoin.
+Un matériel avec une tortue pour apprendre à programmer... A partir de là, l'idée est de faire un chemin qui nous donnerait du texte ? Cela colle parfaitement avec les directions et qui plus est les mouvements de montée et descente du stylo. J'ai d'abord cherché un interpréteur sur le site, mais rien de bien intéressant. Je cherche donc un équivalent python et tombe sur une librairie nommée [Turtle](https://docs.python.org/fr/3/library/turtle.html) qui fait exactement ce dont j'ai besoin.
+
+
+Les étapes sont les suivantes :
+ 1. Définir les actions qui ne sont pas données (elles sont triviales) 
+ 2. transformer le code terrapin en code turtle python
+ 3. afficher le dessin défini par le code
+
+Pour cela rien de mieux qu'un peu de python
+
+```python
+
+code = """PU,L(180),F(300),PD,R(90),F(50),R(90),F(20),R(180),C(12,-180),R(180),F(20),R(180),F(20),R(180),C(12,-180),R(180),F(20),PU,R(180),F(50),L(90),PD,F(50),R(90),F(30),R(180),F(30),L(90),F(20),L(90),F(20),PU,F(20),L(90),PD,F(20),R(90),F(20),R(180),C(10,-180),R(180),F(20),L(90),F(30),R(180),F(30),R(135),F(45),L(45),PU,F(20),PD,L(90),F(30),L(180),F(15),L(45),F(25),L(180),F(25),R(90),F(25),PU,R(45),F(10),PD,L(90),F(20),R(90),F(30),L(180),F(30),L(90),F(35),C(17,-270),R(180),F(17),PU,R(180),F(50),L(90),PD,F(35),R(180),F(12),C(11,-180),R(180),F(30),PU,L(90),F(30),PD,C(30,170),C(20,360),PU,L(188),F(30),R(47),PD,F(35),L(98),F(35),L(180),F(35),L(42),F(30)"""
+
+
+code = code.replace('PU', 't.penup()')
+code = code.replace('F', 't.forward')
+code = code.replace('C', 'f.circle')
+code = code.replace('L', 't.left')
+code = code.replace('R', 't.right')
+code = code.replace('PD', 't.pendown()')
+code = code.replace(',', '\n')
+
+print(code)
+```
+
+Cela nous donne ensuite les différentes instructions : 
+
+```
+>>> t.left(180)
+>>> t.forward(300)
+>>> t.pendown()
+etc.
+```
+
+On initialise la tortue :
+
+```python
+
+s = turtle.getscreen()
+t = turtle.Turtle()
+
+<ICI LES INSTRUCTIONS DONNEES PAR LE CODE CI-DESSUS>
+
+turtle.done()
+```
+
+L'image qu'il en résulte :
+
+![4](https://user-images.githubusercontent.com/16634117/135342952-d2760395-0de2-402a-aec3-afd00352e0ab.png)
+
+Le flag serait donc : `TamilCTF{BFRk5n9Y}` mais ça ne marche pas...
+
+Je me suis souvenu d'un indice dans la première partie du pdf, parlant de pastebin. 
+
+J'essaye alors de trouver le pastebin correspondant à l'url `BFRk5n9Y`
+
+![image](https://user-images.githubusercontent.com/16634117/135343295-6268eccc-1134-49dd-94be-40ce6f3928a0.png)
+
+Bingo ! 
+
+`TamilCTF{7urtl3s_4r3_veRrrRyy_sl0ww}`
