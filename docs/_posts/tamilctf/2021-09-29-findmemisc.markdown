@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Find Me (Misc)"
+title: "Find Me (misc)"
 date: 2021-09-29
 categories: tamilctf
 ---
