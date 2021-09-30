@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "[WIP] It's Paid"
+title:  "It's Paid"
 date:   2021-09-29
 categories: tamilctf
 ---
