@@ -4,7 +4,7 @@ entries:
   - title: A propos
     url: about
     entries:
-      - title: Bienvenue sur mon humble site web. Je poste sur différents sujets autour de la sécurité informatique, notamment sur les CTF. 
+      - title: CTF & hacking stuff.
 
   - title: Tamil CTF 2021
     post_list:
