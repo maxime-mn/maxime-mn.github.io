@@ -43,7 +43,21 @@ Je décide donc de parcourir tous les cours pour trouver quelque chose de diffé
 
 Je rentre les informations de l'url dans les champs de connexion et tombe sur la page d'administration. 
 
+```
+login : admin@tamilctf
+password : imakepaidcringecourses
+```
+
 ![10](https://user-images.githubusercontent.com/16634117/135489941-e97407cd-d4b2-46c2-8513-2614db772e92.png)
 
+Je ne suis pas assez "spécial" pour accéder au flag... Evidemment ce genre d'information à des chances de se trouver dans les cookies, je regarde donc directement à cet endroit. 
+
+![11](https://user-images.githubusercontent.com/16634117/135490454-56ceb99d-6cd1-4850-b097-c78b13373394.png)
+
+Parfait. Je change tout simplement la valeur à `True` et recharge la page.
+
+![12](https://user-images.githubusercontent.com/16634117/135490537-180dcfe8-1924-47fd-87d9-20e69339d030.png)
+
+Bingo !
 
 
