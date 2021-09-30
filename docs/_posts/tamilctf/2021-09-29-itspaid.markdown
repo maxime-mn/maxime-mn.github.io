@@ -5,6 +5,45 @@ date:   2021-09-29
 categories: tamilctf
 ---
 
+Ce challenge est un challenge de la catégorie Web.
+
+La page d'acueil laisse penser que le site permet l'achat de cours de hacking.
+
+![1](https://user-images.githubusercontent.com/16634117/135488598-0911b674-07e4-4e6a-b5ab-f550d22a0437.png)
+
+En parcourant les différents onglets, je me retrouve sur une page où je peux acheter des cours. 
+
+![2](https://user-images.githubusercontent.com/16634117/135488713-ab6564a9-28ea-4d04-95c9-0bc29cedcb1e.png)
+
+J'essaye donc d'en récupérer un.
+
+![3](https://user-images.githubusercontent.com/16634117/135488761-6323d211-a70b-4dd3-b1eb-f0417dc0deb5.png)
+
+Je teste le QR code qui est en fait un RickRoll 🥲
+
+Et puis je tente de cliquer sur le prix affiché.
+
+![4](https://user-images.githubusercontent.com/16634117/135488920-2dc23573-3762-4f94-89f7-90fa541ab942.png)
+
+Evidemment je n'ai pas les fonds nécessaires à l'achat. Mais en regardant la requête envoyée pour l'achat du cours, je remarque que le prix d'achat est dans la requête :
+
+![5](https://user-images.githubusercontent.com/16634117/135489125-16173dbb-f301-446d-a549-62737bda52d9.png)
+
+Je tente de passer le prix à 0. 
+
+![7](https://user-images.githubusercontent.com/16634117/135489573-2fa8308f-98c1-4e91-901e-3b889deb68a6.png)
+
+Parfait ! Je continue donc en le téléchargeant. Je tombe sur une vidéo sans grand intêret.
+
+![8](https://user-images.githubusercontent.com/16634117/135489672-4e55f91b-cf2c-40b4-bdb6-2c63304f12f7.png)
+
+Je décide donc de parcourir tous les cours pour trouver quelque chose de différent et j'arrive enfin sur un cours ou la vidéo et coupée différemment et sur laquelle je vois une page d'administration dans laquelle se trouvent login et mdp pour la zone.
+
+![9](https://user-images.githubusercontent.com/16634117/135489847-31e0d01b-5ecf-4eae-b69f-a4392b5fbb4b.png)
+
+Je rentre les informations de l'url dans les champs de connexion et tombe sur la page d'administration. 
+
+![10](https://user-images.githubusercontent.com/16634117/135489941-e97407cd-d4b2-46c2-8513-2614db772e92.png)
 
 
 
