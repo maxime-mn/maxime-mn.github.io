@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "It's Paid"
+title:  "It's Paid (web)"
 date:   2021-09-29
 categories: tamilctf
 ---
