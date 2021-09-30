@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "CringeNcoder"
+title: "CringeNcoder (web)"
 date: 2021-09-29
 categories: tamilctf
 ---
