@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Flert"
-date:   2021-09-29
+title: "Flert"
+date: 2021-09-29
 categories: tamilctf
 ---
 
@@ -23,9 +23,9 @@ Le titre est probablement un indice, j'ouvre donc mon coeur au système :
 
 ![4](https://user-images.githubusercontent.com/16634117/135315257-b20346ff-fe0f-45ea-b3d5-4b9de278fc31.png)
 
-Cette réponse est très étrange... 
+Cette réponse est très étrange...
 
-Je relance le même message plusieurs fois et la raison est à chaque fois différente... Je suppose que la donnée est utile et son format semble être de l'hexadécimal. En la transformant en un format lisible, je récupère des caractères comme des `{`, `}`, `_` et d'autres... Mais il n'y a aucun ordre logique dans tout ça.
+Je relance le même message, plusieurs fois et la raison est à chaque fois différente... Je suppose que la donnée est utile et son format semble être de l'hexadécimal. En la transformant en un format lisible, je récupère des caractères comme des `{`, `}`, `_` et d'autres... Mais il n'y a aucun ordre logique dans tout ça.
 
 L'énoncé faisait référence à des couleurs, je vérifie donc la source de ces messages pour y trouver cela :
 
@@ -33,7 +33,7 @@ L'énoncé faisait référence à des couleurs, je vérifie donc la source de ce
 
 Un numéro pour chaque message ! Qui change a chaque fois et qui ne représente pas le Nième message envoyé. J'en déduis que c'est la place du caractère dans la chaîne à trouver.
 
-Je recompose donc tout ça dans le bon ordre en envoyant plusieurs fois le message `I love you` : 
+Je recompose donc tout ça dans le bon ordre en envoyant plusieurs fois le message `I love you` :
 
 `54 61 6d 69 6c 43 54 46 7b 30 2e 30 5f 77 30 77 5f 53 68 33 5f`
 
@@ -43,7 +43,7 @@ J'ai donc la première partie du flag. Il me reste maintenant l'autre conversati
 
 ![6](https://user-images.githubusercontent.com/16634117/135316361-ea6b2200-16a1-4443-88cb-b331b2c1a8e9.png)
 
-Habitué à ce genre de challenge, je teste directement de renvoyer le même message. Le bot me répond bizarrement avec une chaine qui semble être fake de plus en prenant en compte le titre de la page... 
+Habitué à ce genre de challenge, je teste directement de renvoyer le même message. Le bot me répond bizarrement avec une chaine qui semble être fake de plus en prenant en compte le titre de la page...
 
 En obersant les requêtes et les cookies, j'ai vite remarqué un nouvel arrivant dans ma liste de cookies qui me semblait bien étrange :
 
