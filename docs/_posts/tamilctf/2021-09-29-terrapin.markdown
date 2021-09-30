@@ -1,17 +1,13 @@
 ---
 layout: post
-title:  "Terrapin"
-date:   2021-09-29
+title: "Terrapin"
+date: 2021-09-29
 categories: tamilctf
 ---
 
-# Introduction
+Ce challenge ne comporte qu'un fichier PDF.
 
-Ce challenge ne comporte qu'un fichier PDF. 
-
-# Résolution
-
-En ouvrant le fichier on y trouve une liste traduisant des instructions : 
+En ouvrant le fichier, on y trouve une liste traduisant des instructions :
 
 ![1 png](https://user-images.githubusercontent.com/16634117/135321043-8acd9c27-951e-46a2-bd78-5a5f59e8f342.png)
 
@@ -19,16 +15,16 @@ Et plus bas du "Terrapin code" :
 
 ![2](https://user-images.githubusercontent.com/16634117/135321136-c1ec2b2a-d55c-4276-9ab9-0329cd432a5f.png)
 
-Je n'ai aucune idée de ce que cela peut être, mais on nous dit que le titre du challenge est un indice important (comme souvent en CTF). Une petite recherche google nous permet de tomber sur ce site : 
+Je n'ai aucune idée de ce que cela peut-être, mais on nous dit que le titre du challenge est un indice important (comme souvent en CTF). Une petite recherche Google nous permet de tomber sur ce site :
 
 ![3](https://user-images.githubusercontent.com/16634117/135321459-702f8201-452c-453a-8ef2-94a8e16bee86.png)
 
-Un matériel avec une tortue pour apprendre à programmer... A partir de là, l'idée est de faire un chemin qui nous donnerait du texte ? Cela colle parfaitement avec les directions et qui plus est les mouvements de montée et descente du stylo. J'ai d'abord cherché un interpréteur sur le site, mais rien de bien intéressant. Je cherche donc un équivalent python et tombe sur une librairie nommée [Turtle](https://docs.python.org/fr/3/library/turtle.html) qui fait exactement ce dont j'ai besoin.
+Un matériel avec une tortue pour apprendre à programmer... À partir de là, l'idée est de faire un chemin qui nous donnerait du texte ? Cela colle parfaitement avec les directions et qui plus est les mouvements de montée et descente du stylo. J'ai d'abord cherché un interpréteur sur le site, mais rien de bien intéressant. Je cherche donc un équivalent python et tombe sur une librairie nommée [Turtle](https://docs.python.org/fr/3/library/turtle.html) qui fait exactement ce dont j'ai besoin.
 
 Les étapes sont les suivantes :
- 1. Définir les actions qui ne sont pas données (elles sont triviales) 
- 2. transformer le code terrapin en code turtle python
- 3. afficher le dessin défini par le code
+1. Définir les actions qui ne sont pas données (elles sont triviales.)
+2. Transformer le code terrapin en code turtle python
+3. Afficher le dessin défini par le code
 
 Pour cela rien de mieux qu'un peu de python
 
@@ -48,7 +44,7 @@ code = code.replace(',', '\n')
 print(code)
 ```
 
-Cela nous donne ensuite les différentes instructions : 
+Cela nous donne ensuite les différentes instructions :
 
 ```
 >>> t.left(180)
@@ -64,7 +60,7 @@ On initialise la tortue :
 s = turtle.getscreen()
 t = turtle.Turtle()
 
-<ICI LES INSTRUCTIONS DONNEES PAR LE CODE CI-DESSUS>
+
 
 turtle.done()
 ```
@@ -75,12 +71,12 @@ L'image qu'il en résulte :
 
 Le flag serait donc : `TamilCTF{BFRk5n9Y}` mais ça ne marche pas...
 
-Je me suis souvenu d'un indice dans la première partie du pdf, parlant de pastebin. 
+Je me suis souvenu d'un indice dans la première partie du pdf, parlant de pastebin.
 
 J'essaye alors de trouver le pastebin correspondant à l'url `BFRk5n9Y`
 
 ![image](https://user-images.githubusercontent.com/16634117/135343295-6268eccc-1134-49dd-94be-40ce6f3928a0.png)
 
-Bingo ! 
+Bingo !
 
 `TamilCTF{7urtl3s_4r3_veRrrRyy_sl0ww}`
