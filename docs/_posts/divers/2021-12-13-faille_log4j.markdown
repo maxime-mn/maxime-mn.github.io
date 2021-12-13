@@ -40,4 +40,12 @@ Voilà donc l'injection, avec un listener de l'autre côté pour vérifier la bo
 
 ![5](https://user-images.githubusercontent.com/16634117/145870531-750a9523-9d1c-4b0d-b523-af4b2d1e669e.png)
 
+Une connexion s'effectue bien entre notre machine et le serveur, ce dernier est donc vulnérable à l'attaque.
+
+# Exploitation
+
+Nous avons vu dans la partie précédente que l'application était vulnérable, cependant pour le moment, aucune execution de code sur le serveur n'est possible. 
+
+C'est ici que la seconde partie de la faille se trouve, l'utilisation de jdni va permettre de faire des appels à un serveur LDAP, serveur qui peut être malicieux et donc utilisé pour rediriger vers du code malveillant en notre possession.
+
 
