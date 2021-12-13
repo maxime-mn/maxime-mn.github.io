@@ -16,7 +16,7 @@ Cet article vise à expliquer la faille de sécurite ShellShock, en aucun cas le
 
 # Analyse de la faille Log4J (CVE-2021-44228)
 
-Pas besoin d'être un professionnel du monde cyber pour avoir entendu parler de cette faille qui a crée quelques sueurs froides ces derniers jours.
+Pas besoin d'être un professionnel du monde cyber pour avoir entendu parler de cette faille qui a créé quelques sueurs froides ces derniers jours.
 
 Connue sous le nom de CVE-2021-44228, ou plus communément "ShellShock" de par son impact étendu, cette faille notée 10 (sur 10 !) par le scoring CVSS permet un _Remote Code Execution_ en exploitant le système de log basé sur Java : Log4J.
 
