@@ -46,7 +46,7 @@ Une connexion s'effectue bien entre notre machine et le serveur, ce dernier est 
 
 Nous avons vu dans la partie précédente que l'application est vulnérable, pour le moment, aucune execution de code sur le serveur n'est réalisée. 
 
-C'est ici que la seconde partie de la faille se trouve, l'utilisation de jdni va permettre de faire des appels à un serveur LDAP, serveur qui peut être malicieux et donc utilisé pour rediriger vers du code malveillant en notre possession.
+C'est ici que la seconde partie de la faille se trouve, l'utilisation de [JNDI](https://en.wikipedia.org/wiki/Java_Naming_and_Directory_Interface) va permettre de faire des appels à un serveur LDAP, serveur qui peut être malicieux et donc utilisé pour rediriger vers du code malveillant en notre possession.
 
 ## Charge utile
 
