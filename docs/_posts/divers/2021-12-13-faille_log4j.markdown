@@ -10,9 +10,11 @@ categories: divers
 
 ---
 
+# Diclaimer
+
 # Analyse de la faille Log4J (CVE-2021-44228)
 
-Pas besoin d'être un professionnel de la cybersécurité pour avoir entendu parler de cette faille qui a mis les Ops et les RSSI en ébullition.
+Pas besoin d'être un professionnel de la cybersécurité pour avoir entendu parler de cette faille qui a mis les internet en ébullition ces derniers jours.
 
 Connue sous le nom de CVE-2021-44228, ou plus communément "ShellShock" de par son impact étendu, cette faille notée 10 (sur 10 !) par le scoring CVSS permet un _Remote Code Execution_ en exploitant le système de log basé sur Java : Log4J.
 
@@ -25,17 +27,17 @@ Voici un bref récapitulatif de l'attaque :
 
 # Reconnaissance de la faille
 
-Cette faille se retrouve sur bon nombre d'applications, puisque Log4J est très répandue pour la création de logs. Pour cette attaque je me base sur l'application Solr, qui utilise une version vulnérable de Log4J.
+Cette faille se retrouve sur bon nombre d'applications, puisque Log4J est très répandue pour la création de logs. Pour cette attaque, je me base sur l'application Solr, qui utilise une version vulnérable de Log4J.
 
 ![2](https://user-images.githubusercontent.com/16634117/145869688-87433bd9-c133-41de-bd0d-43588d5e01a1.PNG)
 
 Un petit tour sur l'application et on remarque rapidement que l'application Log4J est présente dans les arguments de l'application. 
 
-Il faut maintenant savoir si cette version est vulnérable, pour ça il faut trouver un point d'injection. Le plus simple est de jeter un oeil aux logs de l'application :
+Il faut maintenant savoir si cette version est vulnérable, pour ça, il faut trouver un point d'injection. Le plus simple est de jeter un oeil aux logs de l'application :
 
 ![example_logs](https://user-images.githubusercontent.com/16634117/145869966-14f8f7bf-995c-470a-a6e8-dc4a334a5edb.png)
 
-Ici, on voit clairement que les requêtes GET sont journalisées ; l'url mais également **les paramètres**. (C'est sur ce point que l'exploit peut changer, suivant la journalisation en place, il existera des points d'injection de code ou pas)
+Ici, on voit clairement que les requêtes GET sont journalisées ; l'url, mais également **les paramètres**. (C'est sur ce point que l'exploit peut changer, suivant la journalisation en place, il existera des points d'injection de code ou pas.)
 
 Pour identifier la vulnérabilité du système, j'injecte un paramètres GET avec la charge utile suivante (expliquée dans la présentation de la faille) :
 
@@ -99,7 +101,16 @@ Une fois cela fait :
 ![image](https://user-images.githubusercontent.com/16634117/145872643-ec39c7ca-e33d-4b34-8c31-a6b2ed397b09.png)
 _De haut en bas et de gauche à droite : la reqûete malveillante, le serveur LDAP redirigeant le traffic, le serveur Python répondant avec la payload RCE compilée, le reverse shell_
 
-On obtient bien un accès en shell au serveur, par la suite il est possible de continuer une chaîne classque d'attaque pour gagner en privilèges et corrompre une plus grande partie du système.
+On obtient bien un accès en shell au serveur, par la suite il est possible de continuer une chaîne classique d'attaque pour gagner en privilèges et corrompre une plus grande partie du système.
+
+# Conclusion et réponse
+
+Cette faille touche un grand nombre de système, et il y a de fortes chances que vos systèmes en fassent partie, pour vous les solutions sont les suivantes : 
+
+* Mettre à jour Log4J,
+* Désactiver le lookup JDNI.
+
+Une liste non exhaustive des applications touchées est disponible ici : https://github.com/NCSC-NL/log4shell/blob/main/software/README.md
 
 
 
