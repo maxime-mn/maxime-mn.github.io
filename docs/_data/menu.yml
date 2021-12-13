@@ -11,7 +11,7 @@ entries:
       category: tamilctf
       show_more: true
       
-    - title: Divers / Misc
+  - title: Divers / Misc:
     post_list:
       category: divers
       show_more: true
