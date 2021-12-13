@@ -10,6 +10,11 @@ entries:
     post_list:
       category: tamilctf
       show_more: true
+      
+    - title: Divers / Misc
+    post_list:
+      category: divers
+      show_more: true
 
   
   
