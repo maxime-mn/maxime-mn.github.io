@@ -102,7 +102,7 @@ Une requête avec l'injection va déclencher toute la chaîne d'attaque :
 Une fois cela fait :
 
 ![image](https://user-images.githubusercontent.com/16634117/145872643-ec39c7ca-e33d-4b34-8c31-a6b2ed397b09.png)
-_De haut en bas et de gauche à droite : la requête malveillante, le serveur LDAP redirigeant le traffic, le serveur Python répondant avec le code compilé, le reverse shell_
+_De gauche à droite puis de haut en bas : la requête malveillante, le serveur LDAP redirigeant le traffic, le serveur Python répondant avec le code compilé, le reverse shell_
 
 On obtient bien un accès en shell au serveur, par la suite il est possible de continuer une chaîne classique d'attaque pour gagner en privilèges et corrompre une plus grande partie du système.
 
