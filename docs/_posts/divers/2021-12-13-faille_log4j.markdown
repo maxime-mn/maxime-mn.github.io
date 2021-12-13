@@ -18,6 +18,11 @@ Connue sous le nom de CVE-2021-44228, ou plus communément "ShellShock" de par s
 
 Je vous propose une brève analyse de cette faille. Avec tout d'abord un remerciement à John Hammond pour la création de la machine vulnérable sur TryHackMe.
 
+Voici un bref récapitulatif de l'attaque : 
+
+![draw (1)](https://user-images.githubusercontent.com/16634117/145877226-310dc164-e164-4cbb-9065-1027ad80f0d2.jpg)
+
+
 # Reconnaissance de la faille
 
 Cette faille se retrouve sur bon nombre d'applications, puisque Log4J est très répandue pour la création de logs. Pour cette attaque je me base sur l'application Solr, qui utilise une version vulnérable de Log4J.
